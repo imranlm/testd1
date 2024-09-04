@@ -1,0 +1,44 @@
+# version: "3.8"
+# services:
+#   frontend:
+#     build:
+#       context: ./frontend
+#       dockerfile: Dockerfile
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - backend
+
+#   backend:
+#     build:
+#       context: ./backend
+#       dockerfile: Dockerfile
+#     ports:
+#       - "5000:5000"
+#     environment:
+#       - NODE_ENV=production
+
+
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "5000:5000"
+    environment:
+      - ATLAS_DB_URI=mongodb+srv://hafizzabdullah999:abdullah@cluster0.edp8f.mongodb.net/?retryWrites=true&w=majority
+      - STRIPE_SECRET_KEY=sk_test_51NqwwXJKcOK4e5vDzhs8CIbQJOGfT3k876mvS24K4A14w1CO6KQVJDFfivMRlomQvSrZgt0R5ell0Hc6ZHHgsyn2008aHZ3UoA
+      - BASE_URL=http://localhost:5000
+      - SECRET_KEY=Abdullah999
+      - SALT_ROUNDS=10
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+
+
