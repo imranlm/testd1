@@ -2,5 +2,3 @@ branch-defaults:
   main:
     environment: Pmiwebb-env
     group_suffix: null
-global:
-  profile: eb-cli
